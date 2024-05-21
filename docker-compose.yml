@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: kyljmeeski
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: online_queue
+
+  spring-boot-app:
+    image: learningkyljmeeski/online-queue-spring:1.0.1
+    container_name: spring-boot-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/online_queue
+      SPRING_DATASOURCE_USERNAME: kyljmeeski
+      SPRING_DATASOURCE_PASSWORD: password
+    depends_on:
+      - postgres
+  svelte-app:
+    image: learningkyljmeeski/online-queue-svelte:1.0.1
+    container_name: svelte-app
+    ports:
+    - "3000:3000"
+    depends_on:
+      - spring-boot-app
