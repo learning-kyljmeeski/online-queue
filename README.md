@@ -54,7 +54,7 @@ Ensure you have Docker and Docker Compose installed on your machine.
    docker-compose up
    ```
 
-The application will be available at `http://localhost:8080` by default.
+The application will be available at `http://localhost:3000` by default.
 
 ## Project Structure
 
